@@ -1,0 +1,213 @@
+<!DOCTYPE html>  <html lang="en">  
+<head>  
+<meta charset="UTF-8">  
+<title>Happy Birthday 🌝</title>  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">  <style>  
+body{  
+    margin:0;  
+    font-family:'Playfair Display', serif;  
+    background: linear-gradient(135deg,#ff9eb5,#ff6fa3,#ffb3c7);  
+    overflow:hidden;  
+    color:white;  
+}  
+  
+body::before,body::after{  
+    content:"";  
+    position:fixed;  
+    width:300px;height:300px;  
+    background:rgba(255,255,255,0.15);  
+    border-radius:50%;  
+    filter:blur(80px);  
+    z-index:0;  
+}  
+body::before{top:10%;left:10%}  
+body::after{bottom:10%;right:10%}  
+  
+.container{  
+    position:relative;  
+    z-index:2;  
+    min-height:100vh;  
+    display:flex;  
+    flex-direction:column;  
+    align-items:center;  
+    text-align:center;  
+    padding-top:40px;  
+}  
+  
+.scene{  
+    display:none;  
+    flex-direction:column;  
+    align-items:center;  
+    animation:fade 0.8s ease;  
+}  
+.active{display:flex;}  
+  
+@keyframes fade{  
+    from{opacity:0;transform:translateY(20px)}  
+    to{opacity:1;transform:translateY(0)}  
+}  
+  
+h1{font-size:38px;margin-bottom:10px;}  
+  
+.card{  
+    background: rgba(255,255,255,0.75);  
+    backdrop-filter: blur(12px);  
+    color: #ff6f91;  
+    margin: 20px auto;  
+    padding: 28px;  
+    border-radius: 25px;  
+    border: 1.5px solid rgba(255, 182, 193, 0.7);  
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15),  
+                inset 0 0 12px rgba(255, 182, 193, 0.25);  
+    max-width: 420px;  
+}  
+  
+.card p{  
+    margin:0;  
+    line-height:1.6;  
+    font-style:italic;  
+}  
+  
+button{  
+    margin-top:20px;  
+    padding:12px 25px;  
+    border-radius:30px;  
+    border:none;  
+    cursor:pointer;  
+    background:rgba(255,255,255,0.25);  
+    color:white;  
+    backdrop-filter:blur(10px);  
+}  
+  
+/* hearts */  
+.heart{  
+    position:fixed;  
+    bottom:-10px;  
+    font-size:28px;  
+    animation:float 6s linear infinite;  
+    color:rgba(255,255,255,0.7);  
+}  
+@keyframes float{  
+    to{transform:translateY(-100vh);opacity:0;}  
+}  
+  
+/* burst */  
+.burst-heart{  
+    position:fixed;  
+    font-size:26px;  
+    animation:burst 0.8s ease-out forwards;  
+    pointer-events:none;  
+    color:#ffb6c1;  
+}  
+@keyframes burst{  
+    to{  
+        transform:scale(2.5) translate(var(--x),var(--y));  
+        opacity:0;  
+    }  
+}  
+</style>  </head>  <body>  <div class="container">  <div class="scene active" id="s1">  
+    <h1>HAPPY BIRTHDAY!</h1>  
+    <div class="card">  
+        <p>
+
+Happy Birthday Aisha Faisal.. 2026 mubarak ho apko aur lets hope k ye saal pichle se behtr ho apke lye. Aj total 51 din hogaye jab hamari officially bat khtm hui thi, ye din na ane ke liye mene bhot koshish kii thi k kisi na kisi tarah ye din ane se rok lun aur shayd mene apni poori koshish bhi krli but yk things changed. Mujhe yad h is din pichle saal mene apko exactly 12 pr wish kiya tha and things were different, lekin atleast ye bat h k ham ne jo bhi chiz kii wo different kii jese doodles banana jab doodles the bhi nahi aur 🌚🌝 ise kese bhul skte aur phr jab apka nickname dayyan 😎 rakha tha wo wala din, sab alag aur best tha. Ham apni laraiyan kese bhul skte hen jo har do din bad hotin thin, lekin phr hamesha hi wapis sahi hojate the, bhot sii baten bhi hui, alishba, arham, maria wagera ki jis ki waja se apko trust nahi tha aur kai dafa ham log almost bat khtm bhi krne wale the, lekin bas kisi na kisi tarah wapis agaye but nothing lasts forever right?
+</p>
+</div>
+<button onclick="next()">START</button>
+</div>
+
+<div class="scene" id="s2">  
+    <h1>YAPPING 💌</h1>  
+    <div class="card">  
+        <p id="t1"></p>  
+    </div>  
+    <button onclick="next()">NEXT</button>  
+</div>  
+
+<div class="scene" id="s3">  
+    <h1>USEFUL YAP 🙂‍↔️</h1>  
+    <div class="card">  
+        <p id="t2"></p>  
+    </div>  
+    <button onclick="next()">NEXT</button>  
+</div>  
+
+<div class="scene" id="s4">  
+    <h1>AKHRI BAT..</h1>  
+    <div class="card">  
+        <p id="t3"></p>  
+    </div>  
+
+    <button onclick="next()">NEXT</button>  
+</div>  
+
+<div class="scene" id="s5">  
+    <h1>AKHRI BAT..</h1>  
+    <div class="card">  
+        <p id="t4"></p>  
+    </div>  
+</div>
+
+</div>  <script>  
+  
+let step=1;  
+  
+function show(id){  
+    document.querySelectorAll('.scene').forEach(s=>s.classList.remove('active'));  
+    document.getElementById(id).classList.add('active');  
+}  
+  
+function type(text,el,i=0){  
+    if(i<text.length){  
+        el.innerHTML+=text[i];  
+        setTimeout(()=>type(text,el,i+1),50);  
+    }  
+}  
+  
+function next(){  
+    if(step===1){  
+        show('s2');  
+        type(`Ayesha mujhe pata h mene bhot sii esi chizen kahi hongi jis ki waja se ap hurt hui hongi lekin mn ye batana chahta hun k merii kabhii bhi esi intentions nahi thin jis ki waja se ye sab ho, lekin wo phr bhi hota tha kyunke mn jesa tha aur jis tarah mn samjhta tha wo sab boldeta tha, koi banne ki koshish nahi kii kabhi. Kabhi kbar to mujhe lagta k shayd ye sab khatam hone ki waja mn khud hi hun, agr hamari laraian kam hotin, to shayd chizen alag hotin, ya phr kuch aur possiblity ho skti thi but at the end of the day, sab ap par depend krta tha, aur jo apne decide krna tha wohi howa. Bhot sii esi chizen thii jo mujhe kehni thii, bhot kuchh save bhi kiya howa tha k jab larai khtm hogi tab ye bhejunga ya phr jab is trh ka topic hoga to ye bhejunga ya phr kuch bat yad agai to kal bataunga, i am sure apke pass bhi bhot si esi reels hongi jo apko bhejni thi lekin bhej nahi sakin.`, document.getElementById("t1"));  
+    }  
+    else if(step===2){  
+        show('s3');  
+        type(`Ayesha.. aage ane wale waqt k lye mn apni raye derha hun k bhale koi bhii mamla ho, apko do chizen yad rakhni h k koii bhi mushkill solve kii jaskti ha aur apke pas hamesha choice hoti h, bs apko dekhna ana chahye. Apko yad h shuru shuru mn mene kaha tha k mjhse bat krengi to sabr bhi ajayega? Mujhe nahi pata mera kya mtlb tha os bat se 🤭, but i am sure k ap men ab pehle se zyada sabr h.. aur jahan tk bat h apke os rishte wagera ki, dekhen ab mjhe nahi pata kya sach tha kya nahi, iska mtlb ye nahi h k mjhe believe nahi in baton pr, lekin ap bs ye yad rakhen k sabse zyada jo apki care krta h wo ap khud hi hen, ap janti hen k apko kya psnd h.. lekin iska mtlb ye nahi h k apki psnd sahi hi ho, bhae saaf bat h meri ghr men kisi se nahi banti aur na mn kisi se bat krta, apke jane k bad to mn sabse socially cutoff hogya hun, bs jab realtime milta kabhi kabar to bat hojati aur mera ye opinion h k ayesha maa baap old mindsetted hen.`, document.getElementById("t2"));  
+    }  
+    else if(step===3){  
+        show('s4');  
+        type(`Wo is dor ko is tarah nahi smjh skte aur na apki needs ko smjh skte hen, they can be complicated, annoying lekin apse pyar krte hen. Apke pas apki api hen jo shayd apki care krsktin hen, onse har chiz share kiya kren aur kabhii bhii apne sath zabardasti nahii krwanii apne. Hamesha koi na koi hl hota h bs sabr kren aur sab thik hojayega jesa ap chahtin hen wesa hi hoga.. ye future k fesle abhi krna wese bhi sahi nahi h, bs apke pas koi hona chahye jis k sath ap apne burden share kr sken... Mujhe umeed h k apne mere sath time spend krke kuch na kuch seekha hoga,bs jo sab mene bataya h yad rakhen aur mujhe to ap bhul hi jayengi, shayd abhi hi bhul gai hun 🙂.. lekin mn apko ye batana chahta hun k apki "end mn sabko nafrat hojati" wali theory galat ho chuki h aur men apko hamesha yad rakh skta hun i am confident. agr kisi din bat ya phr kuch share krna ho to please msg kr sktin hen ap, mjhe bhot khushi hogi aur mn hamesha intizar bhi krunga is din ka, ho skta future mn esa ho bhi jaye, you never know.`, document.getElementById("t3"));  
+    }  
+    else if(step===4){  
+        show('s5');  
+        type(`Ayesha ab apki life mn bhi bhot change ane wala h, aage ane wali zindagi school life se bhot zyada alag h, to har chiz k lye ready rahen aur khud ko mazboot rakhen, qsme mujhe nahi pata tha ye sab likhna prega kisi din 🙂. Hamesha yahi socha k clg, uni mn bhale baat kam ho lekin ham sath honge jo share krlenge k kya chalrha, ya agr koi bat wagera ho to krlenge, atleast bilkul khtm nahi hogi jab tk koi bara fesla na hojaye yk. Lekin ap abhi bhi msg kr sktin hen jab apka dil chahe, ham bat krlenge, bhale msg delete krden if you want to. Ye mere shayd last msgs bhi hoskte hen unless ap ya phr mn wapis msg krden. I wish you all the best for the future aur ye bat yad rakhen k life jitni bhi mushkil hojaye, you are loved by someone.. Bye Ayesha Dayyan 🌝`, document.getElementById("t4"));  
+    }  
+    step++;  
+}  
+  
+/* hearts */  
+setInterval(()=>{  
+    let h=document.createElement("div");  
+    h.className="heart";  
+    h.innerHTML="❤";  
+    h.style.left=Math.random()*100+"vw";  
+    document.body.appendChild(h);  
+    setTimeout(()=>h.remove(),6000);  
+},250);  
+  
+/* burst */  
+document.addEventListener("click",(e)=>{  
+    for(let i=0;i<10;i++){  
+        let h=document.createElement("div");  
+        h.className="burst-heart";  
+        h.innerHTML="❤";  
+        h.style.left=e.clientX+"px";  
+        h.style.top=e.clientY+"px";  
+        h.style.setProperty("--x",(Math.random()-0.5)*200+"px");  
+        h.style.setProperty("--y",(Math.random()-0.5)*200+"px");  
+        document.body.appendChild(h);  
+        setTimeout(()=>h.remove(),800);  
+    }  
+});  
+  
+</script>  </body>  
+</html>```
